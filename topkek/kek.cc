@@ -7,8 +7,6 @@
 
 int current_position;
 
-// create enum for PICK and DROP
-
 int main ()
 {
 	Initialise(); // sets pos to 0
