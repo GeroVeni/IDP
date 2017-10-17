@@ -1,6 +1,6 @@
 # Automatically generated Makefile
 kek :  utility.o kek.o failsafe.o core.o
-	 g++ -L/export/teach/1BRobot -o kek  utility.o  kek.o  failsafe.o  core.o  -lrobot
+	 g++ -L/export/teach/1BRobot -o kek  utility.o  kek.o  failsafe.o  core.o
 
 utility.o: utility.cc utility.h
 	 g++ -ansi -Wall -g -I/export/teach/1BRobot -c utility.cc

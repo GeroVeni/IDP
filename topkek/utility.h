@@ -1,7 +1,7 @@
 #ifndef __UTILITY_H__
 #define __UTILITY_H__
 
-class string;
+#include <string>
 
 enum Location
 {
@@ -17,9 +17,9 @@ enum Location
     D3 = 9,
     DR1 = 10,
     DR2 = 11
-}
+};
 
 int DropPosition(int);
-string FindPath(int, int);
+std::string FindPath(int, int);
 
 #endif // __UTILITY_H__
