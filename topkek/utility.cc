@@ -23,3 +23,43 @@ std::string FindPath(int start, int dest)
 {
     return std::string();
 }
+
+int Forward()
+{
+
+}
+
+int TurnLeft()
+{
+
+}
+
+
+int TurnRight()
+{
+
+}
+
+
+int SharpLeft()
+{
+
+}
+
+
+int SharpRight()
+{
+
+}
+
+
+int JunctionMode()
+{
+
+}
+
+
+int FailSafe()
+{
+
+}
