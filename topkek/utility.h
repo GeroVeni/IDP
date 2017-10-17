@@ -19,6 +19,8 @@ enum Location
     DR2 = 10
 };
 
+void PathLoader();
+
 int DropPosition(int);
 std::string FindPath(int, int);
 
