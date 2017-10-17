@@ -26,6 +26,10 @@ void PathLoader()
 // Returns the appropriate drop-off point depending on the type of the ball
 int DropPosition(int type)
 {
+    // Set appropriate LED on
+    // TODO
+
+    // Returns destination
     static int nextDR = 1;
     if (type == 1) return D1;
     if (type == 3) return D2;
@@ -39,41 +43,43 @@ int DropPosition(int type)
 	return DR1;
 }
 
+// Sets the motor speed to move forward
 int Forward()
 {
     return 0;
 }
 
+// Sets the motor speeds to turn left
 int TurnLeft()
 {
     return 0;
 }
 
-
+// Sets the motor speeds to turn right
 int TurnRight()
 {
     return 0;
 }
 
-
+// Sets the motor speeds to sharply turn left
 int SharpLeft()
 {
     return 0;
 }
 
-
+// Sets the motor speeds to sharply turn right
 int SharpRight()
 {
     return 0;
 }
 
-
+// Enters the junction mode
 int JunctionMode()
 {
     return 0;
 }
 
-
+// Enters the failsafe mode
 int FailSafe()
 {
     return 0;
