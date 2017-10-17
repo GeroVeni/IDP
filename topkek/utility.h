@@ -23,3 +23,11 @@ int DropPosition(int);
 std::string FindPath(int, int);
 
 #endif // __UTILITY_H__
+
+int Forward();
+int TurnLeft();
+int TurnRight();
+int SharpLeft();
+int SharpRight();
+int JunctionMode();
+int FailSafe();
