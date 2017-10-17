@@ -7,9 +7,9 @@ p4 f p5
 p5 f p6
 p6 l d5
 d5 fl 1
+1 f d3
 1 rf d4
 d4 lffflff 2
-1 f d3
 d3 f d2
 d2 f d1
 d1 fl 2
