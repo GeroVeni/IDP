@@ -22,7 +22,6 @@ enum Location
 void PathLoader();
 
 int DropPosition(int);
-std::string FindPath(int, int);
 
 int Forward();
 int TurnLeft();

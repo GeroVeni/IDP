@@ -2,10 +2,13 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <map>
 #include "utility.h"
 #include "core.h"
 
-int current_position;
+// Global variables declaration
+int current_position;	// The current position of the robot
+std::map <std::pair<int, int>, std::string> pathMap;
 
 int main ()
 {

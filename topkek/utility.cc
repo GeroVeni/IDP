@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <map>
 
-std::map <std::pair<int, int>, std::string> pathMap;
+extern std::map <std::pair<int, int>, std::string> pathMap;
 
 // Loads the paths.txt file
 void PathLoader()
@@ -37,12 +37,6 @@ int DropPosition(int type)
     }
     nextDR++;
 	return DR1;
-}
-
-// Returns the path sequence to connect start and dest
-std::string FindPath(int start, int dest)
-{
-    return std::string();
 }
 
 int Forward()
