@@ -1,8 +1,12 @@
 #include "core.h"
 #include "utility.h"
 
+<<<<<<< HEAD
 extern int speed;
+
+=======
 // Initiallises variables and sets up connection
+>>>>>>> 7d42f194412101c009cd9f2b4ad30cdd4ee10e7c
 void Initialise()
 {
     // Reach starting point

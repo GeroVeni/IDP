@@ -1,6 +1,7 @@
 #ifndef __CORE_H__
 #define __CORE_H__
 
+// Enum describing the mechaical arm motion
 enum ArmType
 {
 	PICK,

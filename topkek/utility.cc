@@ -33,6 +33,10 @@ void PathLoader()
 // Returns the appropriate drop-off point depending on the type of the ball
 int DropPosition(int type)
 {
+    // Set appropriate LED on
+    // TODO
+
+    // Returns destination
     static int nextDR = 1;
     if (type == 1) return D1;
     if (type == 3) return D2;
@@ -47,6 +51,7 @@ int DropPosition(int type)
 }
 
 void Forward()
+// Sets the motor speed to move forward
 {
 	rlink.command(MOTOR_3_GO, speed);
 	rlink.command(MOTOR_4_GO, speed-2 +128);
@@ -54,6 +59,7 @@ void Forward()
 }
 
 void TurnLeft()
+// Sets the motor speeds to turn left
 {
 	int speed = 100;
 	rlink.command(MOTOR_3_GO, speed - 2);
@@ -63,6 +69,7 @@ void TurnLeft()
 
 
 void TurnRight()
+// Sets the motor speeds to turn right
 {
 	int speed = 100;
 	rlink.command(MOTOR_3_GO, speed);
@@ -72,6 +79,7 @@ void TurnRight()
 
 
 void SharpLeft()
+// Sets the motor speeds to sharply turn left
 {
 	int speed = 100;
 	rlink.command(MOTOR_3_GO, speed -2);
@@ -79,8 +87,8 @@ void SharpLeft()
 	delay(50);
 }
 
-
 void SharpRight()
+// Sets the motor speeds to sharply turn right
 {
 	int speed = 100;
 	rlink.command(MOTOR_3_GO, speed + 2);
@@ -90,6 +98,7 @@ void SharpRight()
 
 
 void JunctionMode(int direction)
+// Enters the junction mode
 {
  /*code for junction
  when we think we exited a junction, we have to exit the main linetracking loop
@@ -128,5 +137,6 @@ void JunctionMode(int direction)
 
 
 void FailSafe()
+// Enters the failsafe mode
 {
 }

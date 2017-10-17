@@ -2,17 +2,11 @@
 #include "utility.h"
 
 extern int speed;
-// Initiallises variables and sets up connection
+
 void Initialise()
 {
-    // Reach starting point
-    // TODO
-
-    // Set position to zero
-    // TODO
 }
 
-// Follows the white line until dest is reached
 void LineTracking(int dest)
 {
 	int s1 = 0, s2 = 0, s3 = 0, sit = s1 * 100 + s2 * 10 + s3; //0 or 1 reading from the light sensors, sit is a 
@@ -46,7 +40,6 @@ void LineTracking(int dest)
 	}
 }
 
-// Moves the mechanical arm
 void ArmMove(ArmType type)
 {
     if (type == PICK)
@@ -59,7 +52,6 @@ void ArmMove(ArmType type)
     }
 }
 
-// Identifies the type of the ball picked up - returns 0 if none found
 int Identify()
 {
 	return 0;
