@@ -12,11 +12,11 @@ enum Location
     P4 = 4,
     P5 = 5,
     P6 = 6,
-    D1 = 7,
+    D1 = 9,
     D2 = 8,
-    D3 = 9,
-    DR1 = 10,
-    DR2 = 11
+    D3 = 7,
+    DR1 = 11,
+    DR2 = 10
 };
 
 int DropPosition(int);
