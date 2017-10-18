@@ -1,10 +1,18 @@
 #include "core.h"
 #include "utility.h"
 
+#include <map>
+#include <string>
+
 extern int speed;
+extern std::map<std::pair<int, int>, std::string> pathMap;
+extern int current_position;
+
 // Initiallises variables and sets up connection
 void Initialise()
 {
+	PathLoader();
+	
     // Reach starting point
     // TODO
 
@@ -15,6 +23,8 @@ void Initialise()
 // Follows the white line until dest is reached
 void LineTracking(int dest)
 {
+	std::string path = pathMap[std::make_pair(current_position, dest)];
+	int next_instruction = 0;
 	int s1 = 0, s2 = 0, s3 = 0, sit = s1 * 100 + s2 * 10 + s3; //0 or 1 reading from the light sensors, sit is a 
 
 	while (linetracker == 1)
@@ -40,7 +50,8 @@ void LineTracking(int dest)
 			FailSafe();
 			break;
 		case 111:         //  1    1    1
-			JunctionMode(direction); // direction = 0 or 128 repending on whether the robot has to turn left or right. Don't know the exact declaration or variables yet because we didn't implement the hardcoding of the path //SUBJECT TO CHANGE
+			JunctionMode(path[next_instruction]); // direction = 0 or 128 repending on whether the robot has to turn left or right. Don't know the exact declaration or variables yet because we didn't implement the hardcoding of the path //SUBJECT TO CHANGE
+			next_instruction ++;
 			break;
 		}
 	}

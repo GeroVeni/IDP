@@ -3,9 +3,9 @@
 
 #include <string>
 
-extern int speed = 100; 
-extern int linetracker = 1;
-extern int direction;
+extern int speed; 
+extern int linetracker;
+extern char direction;
 
 enum Location
 {
@@ -32,7 +32,7 @@ void TurnLeft();
 void TurnRight();
 void SharpLeft();
 void SharpRight();
-void JunctionMode(int direction);
+void JunctionMode(char direction);
 void FailSafe();
 
 #endif // __UTILITY_H__

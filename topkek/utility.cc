@@ -12,7 +12,6 @@
 extern std::map <std::pair<int, int>, std::string> pathMap;
 robot_link rlink;
 
-
 // Loads the paths.txt file
 void PathLoader()
 {
@@ -97,18 +96,38 @@ void SharpRight()
 }
 
 
-void JunctionMode(int direction)
+void JunctionMode(char direction)
 // Enters the junction mode
 {
  /*code for junction
  when we think we exited a junction, we have to exit the main linetracking loop
  
  */
-	int speed = 100;
-	int junctionok = 1;
-	rlink.command(MOTOR_3_GO, speed + direction);
-	rlink.command(MOTOR_4_GO, speed - 2 + direction);
-	delay(1800); // timed 90 degree turn to the left or to the right
+	switch (direction)
+	{
+		case 'f':
+		{
+			rlink.command(MOTOR_3_GO, speed + 128);
+			rlink.command(MOTOR_4_GO, speed - 2);
+			delay(1000); // timed 90 degree turn to the left or to the right
+		}
+		
+		case 'l':
+		{
+			rlink.command(MOTOR_3_GO, speed + 128);
+			rlink.command(MOTOR_4_GO, speed - 2 + 128);
+			delay(1800); // timed 90 degree turn to the left or to the right
+		}
+		
+		case 'r':
+		{
+			rlink.command(MOTOR_3_GO, speed);
+			rlink.command(MOTOR_4_GO, speed - 2);
+			delay(1800); // timed 90 degree turn to the left or to the right
+		}
+	}
+	
+	//int junctionok = 1;
 	// Probably here would have a set of delays in order to record some sensor data at the end of the turn. Something like 
 	/*
 	delay(1500);
@@ -125,18 +144,20 @@ void JunctionMode(int direction)
 	rlink.command(MOTOR_4_GO, speed - 2 + direction);
 	delay(100);
 	*read sensor and append to sensor history*
+	* TODO *
 	*/
 
 
 	/*
 	check if passed over a line
-
+	TODO
 	*/
-	linetracker = 0;
+	linetracker = 0; // reinitialised as 1 in the map track 
 }
 
 
 void FailSafe()
 // Enters the failsafe mode
 {
+	// TODO
 }
