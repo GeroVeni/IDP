@@ -3,6 +3,10 @@
 
 #include <string>
 
+extern int speed; 
+extern int linetracker;
+extern char direction;
+
 enum Location
 {
     S = 0,
@@ -23,12 +27,12 @@ void PathLoader();
 
 int DropPosition(int);
 
-int Forward();
-int TurnLeft();
-int TurnRight();
-int SharpLeft();
-int SharpRight();
-int JunctionMode();
-int FailSafe();
+void Forward();
+void TurnLeft();
+void TurnRight();
+void SharpLeft();
+void SharpRight();
+void JunctionMode(char direction);
+void FailSafe();
 
 #endif // __UTILITY_H__

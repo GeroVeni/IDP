@@ -6,11 +6,12 @@ description=1B IDP
 run_cmd=./kek
 
 [files]
-current_page=1
-FILE_NAME_0=0;C++;0;EUTF-8;1;1;0;utility.cc;0;4
-FILE_NAME_1=0;C++;0;EUTF-8;1;1;0;kek.cc;0;4
+current_page=3
+FILE_NAME_0=3405;C++;0;EUTF-8;1;1;0;%2Fhomes%2Fgv281%2FDesktop%2FIDP%2Ftopkek%2Futility.cc;0;4
+FILE_NAME_1=346;C++;0;EUTF-8;1;1;0;%2Fhomes%2Fgv281%2FDesktop%2FIDP%2Ftopkek%2Fkek.cc;0;4
 FILE_NAME_2=0;C++;0;EUTF-8;1;1;0;failsafe.cc;0;4
-FILE_NAME_3=0;C++;0;EUTF-8;1;1;0;core.cc;0;4
+FILE_NAME_3=1361;C++;0;EUTF-8;1;1;0;%2Fhomes%2Fgv281%2FDesktop%2FIDP%2Ftopkek%2Fcore.cc;0;4
+FILE_NAME_4=118;C++;0;EUTF-8;1;1;0;%2Fhomes%2Fgv281%2FDesktop%2FIDP%2Ftopkek%2Futility.h;0;4
 
 [indentation]
 indent_width=4

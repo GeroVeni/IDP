@@ -4,7 +4,13 @@
 #include <stdio.h>
 #include <map>
 
+
+#include <robot_instr.h>
+#include <robot_link.h>
+#include <robot_delay.h>
+
 extern std::map <std::pair<int, int>, std::string> pathMap;
+robot_link rlink;
 
 // Loads the paths.txt file
 void PathLoader()
@@ -43,44 +49,115 @@ int DropPosition(int type)
 	return DR1;
 }
 
+void Forward()
 // Sets the motor speed to move forward
-int Forward()
 {
-    return 0;
+	rlink.command(MOTOR_3_GO, speed);
+	rlink.command(MOTOR_4_GO, speed-2 +128);
+	delay(50);
 }
 
+void TurnLeft()
 // Sets the motor speeds to turn left
-int TurnLeft()
 {
-    return 0;
+	int speed = 100;
+	rlink.command(MOTOR_3_GO, speed - 2);
+	rlink.command(MOTOR_4_GO, speed - 2 + 128);
+	delay(50);
 }
 
+
+void TurnRight()
 // Sets the motor speeds to turn right
-int TurnRight()
 {
-    return 0;
+	int speed = 100;
+	rlink.command(MOTOR_3_GO, speed);
+	rlink.command(MOTOR_4_GO, speed + 128);
+	delay(50);
 }
 
+
+void SharpLeft()
 // Sets the motor speeds to sharply turn left
-int SharpLeft()
 {
-    return 0;
+	int speed = 100;
+	rlink.command(MOTOR_3_GO, speed -2);
+	rlink.command(MOTOR_4_GO, speed + 128);
+	delay(50);
 }
 
+void SharpRight()
 // Sets the motor speeds to sharply turn right
-int SharpRight()
 {
-    return 0;
+	int speed = 100;
+	rlink.command(MOTOR_3_GO, speed + 2);
+	rlink.command(MOTOR_4_GO, speed - 4 + 128);
+	delay(50);
 }
 
+
+void JunctionMode(char direction)
 // Enters the junction mode
-int JunctionMode()
 {
-    return 0;
+ /*code for junction
+ when we think we exited a junction, we have to exit the main linetracking loop
+ 
+ */
+	switch (direction)
+	{
+		case 'f':
+		{
+			rlink.command(MOTOR_3_GO, speed + 128);
+			rlink.command(MOTOR_4_GO, speed - 2);
+			delay(1000); // timed 90 degree turn to the left or to the right
+		}
+		
+		case 'l':
+		{
+			rlink.command(MOTOR_3_GO, speed + 128);
+			rlink.command(MOTOR_4_GO, speed - 2 + 128);
+			delay(1800); // timed 90 degree turn to the left or to the right
+		}
+		
+		case 'r':
+		{
+			rlink.command(MOTOR_3_GO, speed);
+			rlink.command(MOTOR_4_GO, speed - 2);
+			delay(1800); // timed 90 degree turn to the left or to the right
+		}
+	}
+	
+	//int junctionok = 1;
+	// Probably here would have a set of delays in order to record some sensor data at the end of the turn. Something like 
+	/*
+	delay(1500);
+	*read sensor and append to sensor history*
+	rlink.command(MOTOR_3_GO, speed + direction);
+	rlink.command(MOTOR_4_GO, speed - 2 + direction);
+	delay(100);
+	*read sensor and append to sensor history*
+	rlink.command(MOTOR_3_GO, speed + direction);
+	rlink.command(MOTOR_4_GO, speed - 2 + direction);
+	delay(100);
+	*read sensor and append to sensor history*
+	rlink.command(MOTOR_3_GO, speed + direction);
+	rlink.command(MOTOR_4_GO, speed - 2 + direction);
+	delay(100);
+	*read sensor and append to sensor history*
+	* TODO *
+	*/
+
+
+	/*
+	check if passed over a line
+	TODO
+	*/
+	linetracker = 0; // reinitialised as 1 in the map track 
 }
 
+
+void FailSafe()
 // Enters the failsafe mode
-int FailSafe()
 {
-    return 0;
+	// TODO
 }
