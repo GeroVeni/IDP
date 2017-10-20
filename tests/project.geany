@@ -6,8 +6,9 @@ description=1B IDP
 run_cmd=./pulse_test
 
 [files]
-current_page=0
+current_page=1
 FILE_NAME_0=1404;C++;0;EUTF-8;1;1;0;%2Fhomes%2Fgv281%2FDesktop%2FIDP%2Ftests%2Fpulse_test.cc;0;4
+FILE_NAME_1=0;None;0;EUTF-8;1;1;0;%2Fhomes%2Fgv281%2FDesktop%2F%23helloworld.cc%23;0;4
 
 [indentation]
 indent_width=4

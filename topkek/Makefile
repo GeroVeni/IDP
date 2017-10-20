@@ -4,7 +4,7 @@ kek :  utility.o kek.o failsafe.o core.o
 
 utility.o: utility.cc utility.h
 	 g++ -ansi -Wall -g -I/export/teach/1BRobot -c utility.cc
-kek.o: kek.cc utility.h core.h
+kek.o: kek.cc utility.h values.h core.h
 	 g++ -ansi -Wall -g -I/export/teach/1BRobot -c kek.cc
 failsafe.o: failsafe.cc failsafe.h
 	 g++ -ansi -Wall -g -I/export/teach/1BRobot -c failsafe.cc
