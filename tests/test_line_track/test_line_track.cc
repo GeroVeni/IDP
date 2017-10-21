@@ -3,6 +3,8 @@
 #include <robot_instr.h>
 #include <robot_link.h>
 
+#include "../../topkek/core.h"
+
 #define ROBOT_NUM 16   // The id number
 
 using namespace std;
