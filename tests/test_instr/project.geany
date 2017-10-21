@@ -1,0 +1,17 @@
+[project]
+name=test_instr.arm
+base_path=/homes/gv281/Desktop/test_instr
+make_in_base_path=true
+description=1B IDP
+run_cmd=./test_instr.arm
+ 
+[files]
+current_page=1
+FILE_NAME_0=0;C++;0;16;1;1;0;test_instr.cc;0
+ 
+[indentation]
+indent_width=4
+indent_type=1
+indent_hard_tab_width=8
+detect_indent=false
+indent_mode=2
