@@ -124,15 +124,30 @@ int main (int argc, char ** argv)
 
     fprintf(out, "#Automatically generated file\n");
     fprintf(out, "%s:", progName);
-    for (int i=0; i<depCnt; i++) fprintf(out, " %s", depNames[i]);
+    char outName[100];
+    for (int i=0; i<depCnt; i++)
+    {
+        getPath(outName, depNames[i]);
+        int shift = strlen(outName);
+        fprintf(out, " %s", depNames[i] + shift);
+    }
+
     fprintf(out, "\n\tg++ -L/export/teach/1BRobot -o ");
     fprintf(out, "%s ", progName);
-    for (int i=0; i<depCnt; i++) fprintf(out, " %s", depNames[i]);
+    for (int i=0; i<depCnt; i++)
+    {
+        getPath(outName, depNames[i]);
+        int shift = strlen(outName);
+        fprintf(out, " %s", depNames[i] + shift);
+    }
     fprintf(out, " -lrobot\n\n");
 
     for (int i=0; i<depCnt; i++)
     {
-        fprintf(out, "%s:", depNames[i]);
+        getPath(outName, depNames[i]);
+        int shift = strlen(outName);
+        fprintf(out, " %s:", depNames[i] + shift);
+
         char srcName[100];
         cropName(srcName, depNames[i], 2);
         strcat(srcName, ".cc");
