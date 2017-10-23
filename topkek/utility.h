@@ -2,6 +2,7 @@
 #define __UTILITY_H__
 
 #include <string>
+#include <robot_link.h>
 
 extern int speed; 
 extern int linetracker;

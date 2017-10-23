@@ -6,12 +6,11 @@
 
 
 #include <robot_instr.h>
-#include <robot_link.h>
 #include <robot_delay.h>
 #include <stopwatch.h>
 
 extern std::map <std::pair<int, int>, std::string> pathMap;
-robot_link rlink;   // Global robot link
+extern robot_link rlink;   // Global robot link
 
 // Loads the paths.txt file
 void PathLoader()

@@ -7,12 +7,17 @@
 
 #include "../../topkek/core.h"
 #include "../../topkek/utility.h"
+#include <map>
 
 #include <stopwatch.h>
 
 #define ROBOT_NUM 16   // The id number
-robot_link rlink;      // datatype for the robot link
+robot_link rlink;
 int speed = 100;
+int current_position;
+int linetracker;
+char direction;
+std::map <std::pair<int, int>, std::string> pathMap;
 
 using namespace std;
 // void Forward()
