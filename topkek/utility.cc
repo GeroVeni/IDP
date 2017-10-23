@@ -103,7 +103,7 @@ void JunctionMode(char direction)
  when we think we exited a junction, we have to exit the main linetracking loop
  
  */
-	return 0; //for testing purposes
+	return; //for testing purposes
 	switch (direction)
 	{
 		case 'f':
