@@ -3,13 +3,12 @@
 
 #include <robot_instr.h>
 #include <robot_link.h>
+#include <robot_delay.h>
 
 #include "../../topkek/core.h"
 #include "../../topkek/utility.h"
 
 #include <stopwatch.h>
-
-#include <robot_delay.h>
 
 #define ROBOT_NUM 16   // The id number
 robot_link rlink;      // datatype for the robot link
