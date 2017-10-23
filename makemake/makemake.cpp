@@ -38,7 +38,7 @@ void cropName(char * res, const char * str, int l = 3)
 bool hasMain(FILE * in, const char * name = "Unknown file name")
 {
     char * str = fileToStr(in, name);
-    char * res = strstr(str, "main(");
+    char * res = strstr(str, "main (");
     return (res != NULL);
 }
 

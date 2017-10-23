@@ -2,6 +2,6 @@
 #include "values.h"
 #include "core.h"
 
-int main()
+int main ()
 {
 }
