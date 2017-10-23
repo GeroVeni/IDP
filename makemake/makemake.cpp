@@ -35,6 +35,18 @@ void cropName(char * res, const char * str, int l = 3)
     res[len - l] = '\0';
 }
 
+void getPath(char * path, const char * str)
+{
+    int len = strlen(str);
+    int pos = len - 1;
+    for (;pos >= 0; pos --)
+    {
+        if (str[pos] == '/') break;
+    }
+    path[pos + 1] = '\0';
+    if (pos >= 0) strncpy(path, str, pos + 1);
+}
+
 bool hasMain(FILE * in, const char * name = "Unknown file name")
 {
     char * str = fileToStr(in, name);
@@ -77,6 +89,8 @@ int main (int argc, char ** argv)
 
         cropName(depNames[depCnt], argv[i]);
         strcat(depNames[depCnt], ".o");
+        char depPath[100];
+        getPath(depPath, argv[i]);
 
         libCnt = 0;
         rewind(in);
@@ -85,7 +99,8 @@ int main (int argc, char ** argv)
         while (next != NULL)
         {
             next += strlen("#include \"");
-            int i = 0;
+            int i = strlen(depPath);
+            strcpy(libNames[depCnt][libCnt], depPath);
             while ((*next) != '\"')
             {
                 libNames[depCnt][libCnt][i++] = *next;
