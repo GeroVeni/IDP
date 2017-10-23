@@ -60,7 +60,7 @@ void Forward()
 void TurnLeft()
 // Sets the motor speeds to turn left
 {
-	int speed = 100;
+	//int speed = 100;
 	rlink.command(MOTOR_3_GO, speed - 2);
 	rlink.command(MOTOR_4_GO, speed - 2 + 128);
 	delay(50);
@@ -70,7 +70,7 @@ void TurnLeft()
 void TurnRight()
 // Sets the motor speeds to turn right
 {
-	int speed = 100;
+	//int speed = 100;
 	rlink.command(MOTOR_3_GO, speed);
 	rlink.command(MOTOR_4_GO, speed + 128);
 	delay(50);
@@ -80,7 +80,7 @@ void TurnRight()
 void SharpLeft()
 // Sets the motor speeds to sharply turn left
 {
-	int speed = 100;
+	//int speed = 100;
 	rlink.command(MOTOR_3_GO, speed -2);
 	rlink.command(MOTOR_4_GO, speed + 128);
 	delay(50);
@@ -89,7 +89,7 @@ void SharpLeft()
 void SharpRight()
 // Sets the motor speeds to sharply turn right
 {
-	int speed = 100;
+	//int speed = 100;
 	rlink.command(MOTOR_3_GO, speed + 2);
 	rlink.command(MOTOR_4_GO, speed - 4 + 128);
 	delay(50);
@@ -103,6 +103,7 @@ void JunctionMode(char direction)
  when we think we exited a junction, we have to exit the main linetracking loop
  
  */
+	return 0; //for testing purposes
 	switch (direction)
 	{
 		case 'f':
