@@ -4,6 +4,9 @@
 #include <string>
 #include <robot_link.h>
 
+class MotorValues;
+class SensorValues;
+
 extern int speed; 
 extern int linetracker;
 extern char direction;
@@ -26,6 +29,8 @@ enum Location
 
 void PathLoader();
 
+MotorValues readMotors();
+SensorValues readSensors();
 int DropPosition(int);
 
 void Forward();
