@@ -15,51 +15,51 @@ robot_link rlink;      // datatype for the robot link
 int speed = 100;
 
 using namespace std;
-void Forward()
-// Sets the motor speed to move forward
-{
-	rlink.command(MOTOR_3_GO, speed + 128);
-	rlink.command(MOTOR_4_GO, speed-2 );
-	delay(10);
-}
+// void Forward()
+// // Sets the motor speed to move forward
+// {
+// 	rlink.command(MOTOR_3_GO, speed + 128);
+// 	rlink.command(MOTOR_4_GO, speed-2 );
+// 	delay(10);
+// }
 
-void TurnLeft()
-// Sets the motor speeds to turn left
-{
-	//int speed = 100;
-	rlink.command(MOTOR_3_GO, speed + 128);
-	rlink.command(MOTOR_4_GO, speed - 30 - 2);
-	delay(10);
-}
-
-
-void TurnRight()
-// Sets the motor speeds to turn right
-{
-	//int speed = 100;
-	rlink.command(MOTOR_3_GO, speed - 30 + 128);
-	rlink.command(MOTOR_4_GO, speed);
-	delay(10);
-}
+// void TurnLeft()
+// // Sets the motor speeds to turn left
+// {
+// 	//int speed = 100;
+// 	rlink.command(MOTOR_3_GO, speed + 128);
+// 	rlink.command(MOTOR_4_GO, speed - 30 - 2);
+// 	delay(10);
+// }
 
 
-void SharpLeft()
-// Sets the motor speeds to sharply turn left
-{
-	//int speed = 100;
-	rlink.command(MOTOR_3_GO, speed - 30 + 128);
-	rlink.command(MOTOR_4_GO, speed + 10);
-	delay(10);
-}
+// void TurnRight()
+// // Sets the motor speeds to turn right
+// {
+// 	//int speed = 100;
+// 	rlink.command(MOTOR_3_GO, speed - 30 + 128);
+// 	rlink.command(MOTOR_4_GO, speed);
+// 	delay(10);
+// }
 
-void SharpRight()
-// Sets the motor speeds to sharply turn right
-{
-	//int speed = 100;
-	rlink.command(MOTOR_3_GO, speed + 2 + 10 + 128);
-	rlink.command(MOTOR_4_GO, speed - 4 - 30);
-	delay(10);
-}
+
+// void SharpLeft()
+// // Sets the motor speeds to sharply turn left
+// {
+// 	//int speed = 100;
+// 	rlink.command(MOTOR_3_GO, speed - 30 + 128);
+// 	rlink.command(MOTOR_4_GO, speed + 10);
+// 	delay(10);
+// }
+
+// void SharpRight()
+// // Sets the motor speeds to sharply turn right
+// {
+// 	//int speed = 100;
+// 	rlink.command(MOTOR_3_GO, speed + 2 + 10 + 128);
+// 	rlink.command(MOTOR_4_GO, speed - 4 - 30);
+// 	delay(10);
+// }
 
 void test_junc()
 {
@@ -68,12 +68,12 @@ void test_junc()
 	delay(1500);
 }	
 
-std::string toBinary(int n)
-{
-	std::string r;
-	while(n!=0) {r=(n%2==0 ?"0":"1")+r; n/=2;}
-	return r;
-}
+// std::string toBinary(int n)
+// {
+// 	std::string r;
+// 	while(n!=0) {r=(n%2==0 ?"0":"1")+r; n/=2;}
+// 	return r;
+// }
 
 int main ()
 {
