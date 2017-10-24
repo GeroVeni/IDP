@@ -6,9 +6,9 @@
 #include <robot_delay.h>
 #include <stopwatch.h>
 
-#include "core.h"
-#include "utility.h"
-#include "values.h"
+#include "../../topkek/core.h"
+#include "../../topkek/utility.h"
+#include "../../topkek/values.h"
 #include <map>
 
 #define ROBOT_NUM 16   // The id number
