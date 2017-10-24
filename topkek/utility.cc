@@ -12,7 +12,7 @@
 
 extern std::map <std::pair<int, int>, std::string> pathMap;
 extern robot_link rlink;   // Global robot link
-int diff = 20;
+extern int diff;
 
 // Loads the paths.txt file
 void PathLoader()
@@ -57,8 +57,8 @@ MotorValues readMotors()
 {
     MotorValues res;
 
-    res.right = rlink.request(RIGHT_MOTOR);
-    res.left = rlink.request(LEFT_MOTOR);
+    res.right = rlink.request((request_instruction)RIGHT_MOTOR);
+    res.left = rlink.request((request_instruction)LEFT_MOTOR);
     
     return res;
 }
@@ -67,7 +67,7 @@ SensorValues readSensors()
 {
     SensorValues res;
 
-    res.cont = rlink.request(READ_PORT_0);
+    res.data = rlink.request(READ_PORT_0);
     
     return res;
 }
