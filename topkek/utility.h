@@ -27,18 +27,21 @@ enum Location
     DR2 = 10
 };
 
-void PathLoader();
+void            PathLoader();
 
-MotorValues readMotors();
-SensorValues readSensors();
-int DropPosition(int);
+MotorValues     readMotors();
+SensorValues    readSensors();
+int             readWeight();
+ColorValue      readColor();
 
-void Forward();
-void TurnLeft();
-void TurnRight();
-void SharpLeft();
-void SharpRight();
-void JunctionMode(char direction);
-void FailSafe();
+int             DropPosition(int);
+
+void            Forward();
+void            TurnLeft();
+void            TurnRight();
+void            SharpLeft();
+void            SharpRight();
+void            JunctionMode(char direction);
+void            FailSafe();
 
 #endif // __UTILITY_H__

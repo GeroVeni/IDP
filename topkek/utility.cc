@@ -1,6 +1,7 @@
 // Routine functions
 
 #include "utility.h"
+#include "values.h"
 #include <stdio.h>
 #include <map>
 
@@ -11,7 +12,7 @@
 
 extern std::map <std::pair<int, int>, std::string> pathMap;
 extern robot_link rlink;   // Global robot link
-extern int diff;
+int diff = 20;
 
 // Loads the paths.txt file
 void PathLoader()
@@ -36,6 +37,8 @@ int DropPosition(int type)
     // Set appropriate LED on
     // TODO
 
+    // Always go for DR1 ? TODO
+
     // Returns destination
     static int nextDR = 1;
     if (type == 1) return D1;
@@ -50,61 +53,78 @@ int DropPosition(int type)
 	return DR1;
 }
 
+MotorValues readMotors()
+{
+    MotorValues res;
+
+    res.right = rlink.request(RIGHT_MOTOR);
+    res.left = rlink.request(LEFT_MOTOR);
+    
+    return res;
+}
+
+SensorValues readSensors()
+{
+    SensorValues res;
+
+    res.cont = rlink.request(READ_PORT_0);
+    
+    return res;
+}
+
 void Forward()
 // Sets the motor speed to move forward
 {
-	rlink.command(MOTOR_3_GO, speed);
-	rlink.command(MOTOR_4_GO, speed +128);
-	delay(50);
+    rlink.command(MOTOR_3_GO, speed);
+    rlink.command(MOTOR_4_GO, speed +128);
+    delay(50);
 }
 
 void TurnLeft()
 // Sets the motor speeds to turn left
 {
-	//int speed = 100;
-	rlink.command(MOTOR_3_GO, speed - diff);
-	rlink.command(MOTOR_4_GO, speed + 128);
-	delay(50);
+    //int speed = 100;
+    rlink.command(MOTOR_3_GO, speed - diff);
+    rlink.command(MOTOR_4_GO, speed + 128);
+    delay(50);
 }
 
 
 void TurnRight()
 // Sets the motor speeds to turn right
 {
-	//int speed = 100;
-	rlink.command(MOTOR_3_GO, speed );
-	rlink.command(MOTOR_4_GO, speed -diff + 128);
-	delay(50);
+    //int speed = 100;
+    rlink.command(MOTOR_3_GO, speed );
+    rlink.command(MOTOR_4_GO, speed -diff + 128);
+    delay(50);
 }
 
 
 void SharpLeft()
 // Sets the motor speeds to sharply turn left
 {
-	//int speed = 100;
-	rlink.command(MOTOR_3_GO, speed -diff);
-	rlink.command(MOTOR_4_GO, speed  + diff + 128);
-	delay(50);
+    //int speed = 100;
+    rlink.command(MOTOR_3_GO, speed -diff);
+    rlink.command(MOTOR_4_GO, speed  + diff + 128);
+    delay(50);
 }
 
 void SharpRight()
 // Sets the motor speeds to sharply turn right
 {
-	//int speed = 100;
-	rlink.command(MOTOR_3_GO, speed + diff);
-	rlink.command(MOTOR_4_GO, speed - diff + 128);
-	delay(50);
+    //int speed = 100;
+    rlink.command(MOTOR_3_GO, speed + diff);
+    rlink.command(MOTOR_4_GO, speed - diff + 128);
+    delay(50);
 }
 
 
 void JunctionMode(char direction)
 // Enters the junction mode
 {
- /*code for junction
- when we think we exited a junction, we have to exit the main linetracking loop
- 
- */
-	return; //for testing purposes
+    /*code for junction
+    when we think we exited a junction, we have to exit the main linetracking loop
+    */
 	switch (direction)
 	{
 		case 'f':
@@ -131,21 +151,7 @@ void JunctionMode(char direction)
 	
 	//int junctionok = 1;
 	// Probably here would have a set of delays in order to record some sensor data at the end of the turn. Something like 
-	/*
-	delay(1500);
-	*read sensor and append to sensor history*
-	rlink.command(MOTOR_3_GO, speed + direction);
-	rlink.command(MOTOR_4_GO, speed - 2 + direction);
-	delay(100);
-	*read sensor and append to sensor history*
-	rlink.command(MOTOR_3_GO, speed + direction);
-	rlink.command(MOTOR_4_GO, speed - 2 + direction);
-	delay(100);
-	*read sensor and append to sensor history*
-	rlink.command(MOTOR_3_GO, speed + direction);
-	rlink.command(MOTOR_4_GO, speed - 2 + direction);
-	delay(100);
-	*read sensor and append to sensor history*
+	/* append to sensor history*
 	* TODO *
 	*/
 

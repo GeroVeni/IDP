@@ -8,9 +8,9 @@ enum ArmType
 	DROP
 };
 
-void Initialise();
-void LineTracking(int);
-void ArmMove(ArmType);
-int Identify();
+void    Initialise();
+void    LineTracking(int);
+void    ArmMove(ArmType);
+int     Identify();
 
 #endif // __CORE_H__

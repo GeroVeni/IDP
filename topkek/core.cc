@@ -23,13 +23,15 @@ void Initialise()
 // Follows the white line until dest is reached
 void LineTracking(int dest)
 {
+    static SensorValues prevValues = SensorValues();
 	std::string path = pathMap[std::make_pair(current_position, dest)];
 	int next_instruction = 0;
 	int s1 = 0, s2 = 0, s3 = 0, sit = s1 * 100 + s2 * 10 + s3; //0 or 1 reading from the light sensors, sit is a 
+    SensorValues values = readSensors();
 
 	while (linetracker == 1)
 	{
-		switch (sit)
+		switch (values.data)
 		{
 		case 10:          //  0    1    0
 			Forward();
