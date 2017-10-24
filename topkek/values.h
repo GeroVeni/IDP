@@ -5,12 +5,12 @@ enum Motors
 {
     RIGHT_MOTOR = MOTOR_3,
     LEFT_MOTOR = MOTOR_4
-}
+};
 
 struct ColorValue
 {
     int R, G, B;
-}
+};
 
 struct MotorValues
 {

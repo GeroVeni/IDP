@@ -12,9 +12,14 @@
 #include <map>
 
 #define ROBOT_NUM 16   // The id number
+
+class SensorValues;
+
 robot_link rlink;
 int speed = 120 + 128;
 int diff = 20;
+int sit = 10;
+int lastPosition = 10;
 int current_position;
 int linetracker;
 char direction;
@@ -63,6 +68,8 @@ int main ()
 	
     while(1)
     {
+		if (sit != 0)
+			lastPosition = sit;
 		int v=rlink.request (READ_PORT_0);
 		int leftSensor = v & 4;
 		int midSensor = v & 2;
@@ -73,7 +80,7 @@ int main ()
 		//printf("%d %d %d \n", (bool)leftSensor, (bool)midSensor, (bool)rightSensor);
 		
 		bool s1 = leftSensor, s2 = midSensor, s3 = rightSensor;
-		int sit = s1 * 100 + s2 * 10 + s3;
+		sit = s1 * 100 + s2 * 10 + s3;
 		printf("sit : %d\n", sit);
 		
 		switch (sit)

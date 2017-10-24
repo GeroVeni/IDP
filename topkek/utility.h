@@ -6,6 +6,7 @@
 
 class MotorValues;
 class SensorValues;
+class ColorValue;
 
 extern int speed; 
 extern int linetracker;
