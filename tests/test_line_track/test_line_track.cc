@@ -12,6 +12,9 @@
 #include <map>
 
 #define ROBOT_NUM 16   // The id number
+
+class SensorValues;
+
 robot_link rlink;
 int speed = 120 + 128;
 int diff = 20;
