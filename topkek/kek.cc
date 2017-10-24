@@ -18,6 +18,7 @@ std::map <std::pair<int, int>, std::string> pathMap;	// The container of the pat
 int diff = 20;
 int lastPosition = 10;
 
+// Unused
 std::vector <MotorValues> motorHistory;
 std::vector <SensorValues> sensorHistory;
 
