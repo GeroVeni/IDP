@@ -72,8 +72,19 @@ int main (int argc, char ** argv)
     int depCnt = 0;
     int libCnt = 0;
 
+    bool ARM = false;
+    char mainCom[100] = "g++ -L/export/teach/1BRobot";
+    char partCom[200] = "g++ -ansi -Wall -g -I/export/teach/1BRobot";
+
     for (int i = 1; i < argc; i++)
     {
+        if (strcmp(argv[i], "--arm") == 0)
+        {
+            ARM = true;
+            strcpy(mainCom, "arm-linux-gnueabi-g++ -L/usr/arm-unknown-linux-gnueabi/lib");
+            strcpy(partCom, "arm-linux-gnueabi-g++ -ansi -Wall -g -I/usr/arm-unknown-linux-gnueabi/include -I/export/teach/1BRobot");
+            continue;
+        }
         if (!iscc(argv[i])) continue;
         in = fopen(argv[i], "r");
         if (!in)
@@ -122,6 +133,8 @@ int main (int argc, char ** argv)
         return 0;
     }
 
+    if (ARM) strcat(progName, ".arm");
+
     fprintf(out, "#Automatically generated file\n");
     fprintf(out, "%s:", progName);
     char outName[100];
@@ -132,7 +145,7 @@ int main (int argc, char ** argv)
         fprintf(out, " %s", depNames[i] + shift);
     }
 
-    fprintf(out, "\n\tg++ -L/export/teach/1BRobot -o ");
+    fprintf(out, "\n\t%s -o ", mainCom);
     fprintf(out, "%s ", progName);
     for (int i=0; i<depCnt; i++)
     {
@@ -154,7 +167,7 @@ int main (int argc, char ** argv)
         fprintf(out, " %s", srcName);
         for (int j=0; j<libs[i]; j++) fprintf(out, " %s", libNames[i][j]);
         fprintf(out, "\n");
-        fprintf(out, "\tg++ -ansi -Wall -g -I/export/teach/1BRobot -c %s\n", srcName);
+        fprintf(out, "\t%s -c %s\n",partCom, srcName);
     }
 
     return 0;

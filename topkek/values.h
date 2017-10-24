@@ -22,9 +22,9 @@ struct SensorValues
     SensorValues(): data(0) {}
     int data;
 
-    int right   () { return data & 1; }
-    int mid     () { return data & 2; }
-    int left    () { return data & 4; }
+    bool right  () { return data & 1; }
+    bool mid    () { return data & 2; }
+    bool left   () { return data & 4; }
 };
 
 #endif // __VALUES_H__

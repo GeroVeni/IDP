@@ -77,7 +77,7 @@ void Forward()
 {
     rlink.command(MOTOR_3_GO, speed);
     rlink.command(MOTOR_4_GO, speed +128);
-    delay(50);
+    delay(10);
 }
 
 void TurnLeft()
@@ -86,7 +86,7 @@ void TurnLeft()
     //int speed = 100;
     rlink.command(MOTOR_3_GO, speed - diff);
     rlink.command(MOTOR_4_GO, speed + 128);
-    delay(50);
+    delay(10);
 }
 
 
@@ -96,7 +96,7 @@ void TurnRight()
     //int speed = 100;
     rlink.command(MOTOR_3_GO, speed );
     rlink.command(MOTOR_4_GO, speed -diff + 128);
-    delay(50);
+    delay(10);
 }
 
 
@@ -104,20 +104,19 @@ void SharpLeft()
 // Sets the motor speeds to sharply turn left
 {
     //int speed = 100;
-    rlink.command(MOTOR_3_GO, speed -diff);
-    rlink.command(MOTOR_4_GO, speed  + diff + 128);
-    delay(50);
+    rlink.command(MOTOR_3_GO, speed -diff/2);
+    rlink.command(MOTOR_4_GO, speed  + 3*diff + 128);
+    delay(10);
 }
 
 void SharpRight()
 // Sets the motor speeds to sharply turn right
 {
     //int speed = 100;
-    rlink.command(MOTOR_3_GO, speed + diff);
-    rlink.command(MOTOR_4_GO, speed - diff + 128);
-    delay(50);
+    rlink.command(MOTOR_3_GO, speed + 3*diff);
+    rlink.command(MOTOR_4_GO, speed - diff/2 + 128);
+    delay(10);
 }
-
 
 void JunctionMode(char direction)
 // Enters the junction mode
@@ -163,9 +162,19 @@ void JunctionMode(char direction)
 	linetracker = 0; // reinitialised as 1 in the map track 
 }
 
-
 void FailSafe()
 // Enters the failsafe mode
 {
-	// TODO
+    switch (lastPosition)
+    {
+        case 10:
+            Forward();
+            break;
+        case 100:
+            SharpLeft();
+            break;
+        case 1:
+            SharpRight();
+            break;
+    }
 }
