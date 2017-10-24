@@ -12,6 +12,7 @@
 extern std::map <std::pair<int, int>, std::string> pathMap;
 extern robot_link rlink;   // Global robot link
 extern int diff;
+extern int lastPosition;
 
 // Loads the paths.txt file
 void PathLoader()
@@ -161,5 +162,16 @@ void JunctionMode(char direction)
 void FailSafe()
 // Enters the failsafe mode
 {
-	//TODO
+	switch (lastPosition)
+	{
+		case 10:
+			Forward();
+			break;
+		case 100:
+			SharpLeft();
+			break;
+		case 1:
+			SharpRight();
+			break;
+	}
 }

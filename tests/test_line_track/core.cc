@@ -7,6 +7,7 @@
 extern int speed;
 extern std::map<std::pair<int, int>, std::string> pathMap;
 extern int current_position;
+extern int lastPosition;
 
 // Initiallises variables and sets up connection
 void Initialise()
