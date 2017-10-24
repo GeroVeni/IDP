@@ -13,6 +13,7 @@
 extern std::map <std::pair<int, int>, std::string> pathMap;
 extern robot_link rlink;   // Global robot link
 extern int diff;
+extern int lastPosition;
 
 // Loads the paths.txt file
 void PathLoader()
