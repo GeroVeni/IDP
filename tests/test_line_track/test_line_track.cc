@@ -20,51 +20,7 @@ char direction;
 std::map <std::pair<int, int>, std::string> pathMap;
 
 using namespace std;
-// void Forward()
-// // Sets the motor speed to move forward
-// {
-// 	rlink.command(MOTOR_3_GO, speed + 128);
-// 	rlink.command(MOTOR_4_GO, speed-2 );
-// 	delay(10);
-// }
 
-// void TurnLeft()
-// // Sets the motor speeds to turn left
-// {
-// 	//int speed = 100;
-// 	rlink.command(MOTOR_3_GO, speed + 128);
-// 	rlink.command(MOTOR_4_GO, speed - 30 - 2);
-// 	delay(10);
-// }
-
-
-// void TurnRight()
-// // Sets the motor speeds to turn right
-// {
-// 	//int speed = 100;
-// 	rlink.command(MOTOR_3_GO, speed - 30 + 128);
-// 	rlink.command(MOTOR_4_GO, speed);
-// 	delay(10);
-// }
-
-
-// void SharpLeft()
-// // Sets the motor speeds to sharply turn left
-// {
-// 	//int speed = 100;
-// 	rlink.command(MOTOR_3_GO, speed - 30 + 128);
-// 	rlink.command(MOTOR_4_GO, speed + 10);
-// 	delay(10);
-// }
-
-// void SharpRight()
-// // Sets the motor speeds to sharply turn right
-// {
-// 	//int speed = 100;
-// 	rlink.command(MOTOR_3_GO, speed + 2 + 10 + 128);
-// 	rlink.command(MOTOR_4_GO, speed - 4 - 30);
-// 	delay(10);
-// }
 
 void test_junc()
 {
