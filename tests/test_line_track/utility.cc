@@ -12,7 +12,7 @@
 extern std::map <std::pair<int, int>, std::string> pathMap;
 extern robot_link rlink;   // Global robot link
 extern int diff;
-extern int lastPosition;
+extern int lastPosition; // Records the last nonzero position of the robot
 
 // Loads the paths.txt file
 void PathLoader()
@@ -56,7 +56,7 @@ void Forward()
 {
 	rlink.command(MOTOR_3_GO, speed);
 	rlink.command(MOTOR_4_GO, speed +128);
-	delay(50);
+	delay(10);
 }
 
 void TurnLeft()
@@ -65,7 +65,7 @@ void TurnLeft()
 	//int speed = 100;
 	rlink.command(MOTOR_3_GO, speed - diff);
 	rlink.command(MOTOR_4_GO, speed + 128);
-	delay(50);
+	delay(10);
 }
 
 
@@ -75,7 +75,7 @@ void TurnRight()
 	//int speed = 100;
 	rlink.command(MOTOR_3_GO, speed );
 	rlink.command(MOTOR_4_GO, speed -diff + 128);
-	delay(50);
+	delay(10);
 }
 
 
@@ -83,18 +83,18 @@ void SharpLeft()
 // Sets the motor speeds to sharply turn left
 {
 	//int speed = 100;
-	rlink.command(MOTOR_3_GO, speed -diff);
-	rlink.command(MOTOR_4_GO, speed  + diff + 128);
-	delay(50);
+	rlink.command(MOTOR_3_GO, speed -diff/2);
+	rlink.command(MOTOR_4_GO, speed  + 3*diff + 128);
+	delay(10);
 }
 
 void SharpRight()
 // Sets the motor speeds to sharply turn right
 {
 	//int speed = 100;
-	rlink.command(MOTOR_3_GO, speed + diff);
-	rlink.command(MOTOR_4_GO, speed - diff + 128);
-	delay(50);
+	rlink.command(MOTOR_3_GO, speed + 3*diff);
+	rlink.command(MOTOR_4_GO, speed - diff/2 + 128);
+	delay(10);
 }
 
 
@@ -130,31 +130,6 @@ void JunctionMode(char direction)
 		}
 	}
 	
-	//int junctionok = 1;
-	// Probably here would have a set of delays in order to record some sensor data at the end of the turn. Something like 
-	/*
-	delay(1500);
-	*read sensor and append to sensor history*
-	rlink.command(MOTOR_3_GO, speed + direction);
-	rlink.command(MOTOR_4_GO, speed - 2 + direction);
-	delay(100);
-	*read sensor and append to sensor history*
-	rlink.command(MOTOR_3_GO, speed + direction);
-	rlink.command(MOTOR_4_GO, speed - 2 + direction);
-	delay(100);
-	*read sensor and append to sensor history*
-	rlink.command(MOTOR_3_GO, speed + direction);
-	rlink.command(MOTOR_4_GO, speed - 2 + direction);
-	delay(100);
-	*read sensor and append to sensor history*
-	* TODO *
-	*/
-
-
-	/*
-	check if passed over a line
-	TODO
-	*/
 	linetracker = 0; // reinitialised as 1 in the map track 
 }
 
