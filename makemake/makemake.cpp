@@ -64,7 +64,7 @@ int main (int argc, char ** argv)
 
     bool mainFound = false;
     FILE * in;
-    FILE * out = fopen("Makefile.t", "w");
+    FILE * out = fopen("Makefile", "w");
     char progName[100];
     char depNames[100][100];
     char libNames[30][30][40];

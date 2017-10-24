@@ -161,5 +161,5 @@ void JunctionMode(char direction)
 void FailSafe()
 // Enters the failsafe mode
 {
-	// TODO
+	//TODO
 }
