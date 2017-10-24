@@ -75,7 +75,7 @@ int main ()
 		int midSensor = v & 2;
 		int rightSensor = v & 1;
 
-        SensorValues values = readSensors();
+        SensorValues values = readSensors();  
 		
 		//printf("%d %d %d \n", (bool)leftSensor, (bool)midSensor, (bool)rightSensor);
 		
