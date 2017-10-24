@@ -7,6 +7,11 @@ enum Motors
     LEFT_MOTOR = MOTOR_4
 }
 
+struct ColorValue
+{
+    int R, G, B;
+}
+
 struct MotorValues
 {
 	int right, left;
@@ -14,7 +19,12 @@ struct MotorValues
 
 struct SensorValues
 {
-	int right, mid, left;
+    SensorValues(): data(0) {}
+    int data;
+
+    int right   () { return data & 1; }
+    int mid     () { return data & 2; }
+    int left    () { return data & 4; }
 };
 
 #endif // __VALUES_H__

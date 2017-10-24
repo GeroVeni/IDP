@@ -4,12 +4,12 @@
 #include <robot_instr.h>
 #include <robot_link.h>
 #include <robot_delay.h>
+#include <stopwatch.h>
 
 #include "core.h"
 #include "utility.h"
+#include "values.h"
 #include <map>
-
-#include <stopwatch.h>
 
 #define ROBOT_NUM 16   // The id number
 robot_link rlink;
@@ -67,6 +67,8 @@ int main ()
 		int leftSensor = v & 4;
 		int midSensor = v & 2;
 		int rightSensor = v & 1;
+
+        SensorValues values = readSensors();
 		
 		//printf("%d %d %d \n", (bool)leftSensor, (bool)midSensor, (bool)rightSensor);
 		
