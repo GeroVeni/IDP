@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 #include <map>
 
 #include "../../topkek/values.h"
@@ -42,14 +43,17 @@ int main ()
     if (whiteErr < yellowErr && whiteErr < multiErr)
     {
         // White
+        printf("White\n");
     }
     else if (yellowErr < multiErr)
     {
         // Yellow
+        printf("Yellow\n");
     }
     else
     {
         // Multi
+        printf("Multi\n");
     }
 
     return 0;
