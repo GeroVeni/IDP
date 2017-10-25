@@ -86,7 +86,7 @@ void TurnLeft()
 {
     //int speed = 100;
     rlink.command(MOTOR_3_GO, speed - diff);
-    rlink.command(MOTOR_4_GO, speed + 128);
+    rlink.command(MOTOR_4_GO, speed + diff + 128);
     delay(10);
 }
 
@@ -95,7 +95,7 @@ void TurnRight()
 // Sets the motor speeds to turn right
 {
     //int speed = 100;
-    rlink.command(MOTOR_3_GO, speed );
+    rlink.command(MOTOR_3_GO, speed + diff);
     rlink.command(MOTOR_4_GO, speed -diff + 128);
     delay(10);
 }
@@ -105,7 +105,8 @@ void SharpLeft()
 // Sets the motor speeds to sharply turn left
 {
     //int speed = 100;
-    rlink.command(MOTOR_3_GO, speed -diff/2);
+    //rlink.command(MOTOR_3_GO, speed -diff);
+    rlink.command(MOTOR_3_GO, 20);
     rlink.command(MOTOR_4_GO, speed  + 3*diff + 128);
     delay(10);
 }
@@ -115,7 +116,8 @@ void SharpRight()
 {
     //int speed = 100;
     rlink.command(MOTOR_3_GO, speed + 3*diff);
-    rlink.command(MOTOR_4_GO, speed - diff/2 + 128);
+    //rlink.command(MOTOR_4_GO, speed - diff + 128);
+    rlink.command(MOTOR_4_GO, 20+128);
     delay(10);
 }
 

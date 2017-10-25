@@ -16,8 +16,8 @@
 class SensorValues;
 
 robot_link rlink;
-int speed = 120 + 128;
-int diff = 20;
+int speed = 90 + 128;
+int diff = 10;
 int sit = 10;
 int lastPosition = 10;
 int current_position;
@@ -33,10 +33,10 @@ void test_junc()
 	int ok =1;
 	rlink.command(MOTOR_3_GO, speed );
 	rlink.command(MOTOR_4_GO, speed +128);
-	delay(250);
+	delay(350);
 	rlink.command(MOTOR_3_GO, speed -128);
 	rlink.command(MOTOR_4_GO, speed -128);
-	delay(700);
+	delay(1200);
 	while (ok==1)
 	{
 		int v=rlink.request (READ_PORT_0);

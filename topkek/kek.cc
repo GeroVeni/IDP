@@ -24,10 +24,13 @@ std::vector <SensorValues> sensorHistory;
 
 int main ()
 {
+	printf("JJJ\n");
 	Initialise();
 	for (int ball = 1; ball <= 6; ball++)
 	{
+		printf("Start\n");
 		LineTracking(ball); // updates current_position to ball position after movement
+		printf("Here\n");
 		ArmMove(PICK);
 		int type = Identify();
 		int drop_position = DropPosition(type);

@@ -2,6 +2,7 @@
 #include "utility.h"
 #include "values.h"
 #include <map>
+#include <stdio.h>
 #include <string>
 
 extern int speed;
@@ -36,6 +37,7 @@ void LineTracking(int dest)
         // Read sensor values
         SensorValues values = readSensors();
         int sit = 100 * values.left() + 10 * values.mid() + 1 * values.right();
+        printf("Loop\n");
 
 		switch (sit)
 		{
