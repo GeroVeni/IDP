@@ -67,8 +67,8 @@ void LineTracking(int dest)
 	}
 }
 
-// Moves the mechanical arm
 void ArmMove(ArmType type)
+    // Moves the mechanical arm
 {
     if (type == PICK)
     {
@@ -80,8 +80,8 @@ void ArmMove(ArmType type)
     }
 }
 
-// Identifies the type of the ball picked up - returns 0 if none found
 int Identify()
+    // Identifies the type of the ball picked up - returns 0 if none found
 {
 	return 0;
 }

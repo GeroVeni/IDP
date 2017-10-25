@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "values.h"
-#include "utility.h"
-#include "core.h"
+#include "../../topkek/values.h"
+#include "../../topkek/utility.h"
+#include "../../topkek/core.h"
 
 #include <robot_instr.h>
 #include <robot_link.h>
@@ -27,9 +27,23 @@ int main ()
         return -1;
     }
 
-	ColorValue white, yellow, multi;
+    ColorValue whiteMean(127, 127, 127), yellowMean(127, 127, 0), multiMean(63, 63, 63);
     ColorValue res = readColor();
-    
+    int whiteErr = colorError(res, whiteMean);
+    int yellowErr = colorError(res, yellowMean);
+    int multiErr = colorError(res, multiMean);
+    if (whiteErr < yellowErr && whiteErr < multiErr)
+    {
+        // White
+    }
+    else if (yellowErr < multiErr)
+    {
+        // Yellow
+    }
+    else
+    {
+        // Multi
+    }
 
     return 0;
 }

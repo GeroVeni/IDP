@@ -13,6 +13,7 @@ extern int linetracker;
 extern char direction;
 
 enum Location
+    // Enum mapping the locations
 {
     S = 0,
     P1 = 1,

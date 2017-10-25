@@ -15,8 +15,8 @@ extern robot_link rlink;   // Global robot link
 extern int diff;
 extern int lastPosition;
 
-// Loads the paths.txt file
 void PathLoader()
+    // Loads the paths.txt file
 {
     int n;
     FILE * in = fopen("paths.txt", "r");
@@ -32,8 +32,8 @@ void PathLoader()
     }
 }
 
-// Returns the appropriate drop-off point depending on the type of the ball
 int DropPosition(int type)
+    // Returns the appropriate drop-off point depending on the type of the ball
 {
     // Set appropriate LED on
     // TODO
@@ -55,26 +55,46 @@ int DropPosition(int type)
 }
 
 MotorValues readMotors()
+    // Reads the input from the motor and saves it into the motor history
 {
     MotorValues res;
 
-    res.right = rlink.request((request_instruction)RIGHT_MOTOR);
-    res.left = rlink.request((request_instruction)LEFT_MOTOR);
+    // Read input
+    res.right = rlink.request(RIGHT_MOTOR);
+    res.left = rlink.request(LEFT_MOTOR);
+
+    // Save it into motor history
+    // TODO
     
     return res;
 }
 
 SensorValues readSensors()
+    // Reads the input from the sensors and saves it into the motor history
 {
     SensorValues res;
 
     res.data = rlink.request(READ_PORT_0);
+
+    // Save it into sensor history
+    // TODO
     
     return res;
 }
 
+int readWeight()
+{
+    int val = rlink.request(READ_PORT_0);
+    return val & (1 << 7);
+}
+
+ColorValue readColor()
+{
+    
+}
+
 void Forward()
-// Sets the motor speed to move forward
+    // Sets the motor speed to move forward
 {
     rlink.command(MOTOR_3_GO, speed);
     rlink.command(MOTOR_4_GO, speed +128);
@@ -82,7 +102,7 @@ void Forward()
 }
 
 void TurnLeft()
-// Sets the motor speeds to turn left
+    // Sets the motor speeds to turn left
 {
     //int speed = 100;
     rlink.command(MOTOR_3_GO, speed - diff);
@@ -92,7 +112,7 @@ void TurnLeft()
 
 
 void TurnRight()
-// Sets the motor speeds to turn right
+    // Sets the motor speeds to turn right
 {
     //int speed = 100;
     rlink.command(MOTOR_3_GO, speed + diff);
@@ -102,7 +122,7 @@ void TurnRight()
 
 
 void SharpLeft()
-// Sets the motor speeds to sharply turn left
+    // Sets the motor speeds to sharply turn left
 {
     //int speed = 100;
     //rlink.command(MOTOR_3_GO, speed -diff);
@@ -112,7 +132,7 @@ void SharpLeft()
 }
 
 void SharpRight()
-// Sets the motor speeds to sharply turn right
+    // Sets the motor speeds to sharply turn right
 {
     //int speed = 100;
     rlink.command(MOTOR_3_GO, speed + 3*diff);
@@ -122,7 +142,7 @@ void SharpRight()
 }
 
 void JunctionMode(char direction)
-// Enters the junction mode
+    // Enters the junction mode
 {
     /*code for junction
     when we think we exited a junction, we have to exit the main linetracking loop
@@ -152,11 +172,6 @@ void JunctionMode(char direction)
 	}
 	
 	//int junctionok = 1;
-	// Probably here would have a set of delays in order to record some sensor data at the end of the turn. Something like 
-	/* append to sensor history*
-	* TODO *
-	*/
-
 
 	/*
 	check if passed over a line
@@ -166,7 +181,7 @@ void JunctionMode(char direction)
 }
 
 void FailSafe()
-// Enters the failsafe mode
+    // Enters the failsafe mode
 {
     switch (lastPosition)
     {
