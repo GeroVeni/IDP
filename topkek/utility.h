@@ -37,6 +37,7 @@ int             readWeight();
 ColorValue      readColor();
 
 int             DropPosition(int);
+int				colorError(ColorValue, ColorValue);
 
 void            Forward();
 void            TurnLeft();

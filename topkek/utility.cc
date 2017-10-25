@@ -54,14 +54,24 @@ int DropPosition(int type)
 	return DR1;
 }
 
+int colorError(ColorValue col1, ColorValue col2)
+{
+	int dif1 = col1.R - col2.R;
+	int dif2 = col1.G - col2.G;
+	int dif3 = col1.B - col2.B;
+	
+	return dif1 * dif1 + dif2 * dif2 + dif3 * dif3;
+}
+
 MotorValues readMotors()
     // Reads the input from the motor and saves it into the motor history
 {
     MotorValues res;
 
     // Read input
-    res.right = rlink.request(RIGHT_MOTOR);
-    res.left = rlink.request(LEFT_MOTOR);
+    // TODO Identify which motor is which
+    res.right = rlink.request(MOTOR_3);
+    res.left = rlink.request(MOTOR_4);
 
     // Save it into motor history
     // TODO
