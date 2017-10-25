@@ -1,15 +1,17 @@
 #ifndef __VALUES_H__
 #define __VALUES_H__
 
-class request_instruction;
+//class request_instruction;
 
 // Variables describing the motors
-const request_instruction RIGHT_MOTOR = MOTOR_3;
-const request_instruction LEFT_MOTOR = MOTOR_4;
+//const request_instruction RIGHT_MOTOR = MOTOR_3;
+//const request_instruction LEFT_MOTOR = MOTOR_4;
 
 struct ColorValue
     // Struct that contains information about a color taken from the color sensor
 {
+	ColorValue() {}
+	ColorValue(int r, int g, int b) : R(r), G(g), B(b) {}
     int R, G, B;
 };
 

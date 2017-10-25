@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 
 #include "../../topkek/values.h"
 #include "../../topkek/utility.h"
@@ -12,6 +13,12 @@
 using namespace std;
 
 robot_link rlink;      // datatype for the robot link
+int current_position;
+int linetracker;
+std::map <std::pair <int, int>, std::string> pathMap;
+int speed;
+int diff;
+int lastPosition;
 
 int main ()
 {
