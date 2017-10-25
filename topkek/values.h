@@ -1,7 +1,7 @@
 #ifndef __VALUES_H__
 #define __VALUES_H__
 
-class request_instruction;
+//class request_instruction;
 
 // Variables describing the motors
 const request_instruction RIGHT_MOTOR = MOTOR_3;
