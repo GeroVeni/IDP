@@ -94,13 +94,35 @@ SensorValues readSensors()
 
 int readWeight()
 {
-    int val = rlink.request(READ_PORT_0);
-    return val & (1 << 7);
+    int val = rlink.request(READ_PORT_1);
+    return val & (1 << 3);
 }
 
 ColorValue readColor()
 {
-    
+	static int pause = 100;
+	ColorValue res;
+
+	// Read red color
+	int temp = rlink.request(READ_PORT_1);
+	rlink.command(WRITE_PORT_1, (temp | 1) & (~6));
+	delay(pause);
+	res.R = rlink.request(ADC0);
+
+	// Read green color
+	rlink.command(WRITE_PORT_1, (temp | 2) & (~5));
+	delay(pause);
+	res.G = rlink.request(ADC0);
+	
+	// Read blue color
+	rlink.command(WRITE_PORT_1, (temp | 4) & (~3));
+	delay(pause);
+	res.B = rlink.request(ADC0);
+
+	//  Light LEDs to show color
+	//  TODO
+	
+	return res;
 }
 
 void Forward()
