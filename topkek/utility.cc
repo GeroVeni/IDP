@@ -100,24 +100,24 @@ int readWeight()
 
 ColorValue readColor()
 {
-	static int pause = 100;
+	static int pause = 1000;
 	ColorValue res;
 
-	// Read red color
+	// Read blue color
 	int temp = rlink.request(READ_PORT_1);
-	rlink.command(WRITE_PORT_1, (temp | 1) & (~6));
+	rlink.command(WRITE_PORT_1, (temp | 6) & (~1));
 	delay(pause);
-	res.R = rlink.request(ADC0);
+	res.B = rlink.request(ADC0);
 
 	// Read green color
-	rlink.command(WRITE_PORT_1, (temp | 2) & (~5));
+	rlink.command(WRITE_PORT_1, (temp | 5) & (~2));
 	delay(pause);
 	res.G = rlink.request(ADC0);
 	
-	// Read blue color
-	rlink.command(WRITE_PORT_1, (temp | 4) & (~3));
+	// Read red color
+	rlink.command(WRITE_PORT_1, (temp | 3) & (~4));
 	delay(pause);
-	res.B = rlink.request(ADC0);
+	res.R = rlink.request(ADC0);
 
 	//  Light LEDs to show color
 	//  TODO

@@ -8,6 +8,7 @@
 
 #include <robot_instr.h>
 #include <robot_link.h>
+#include <robot_delay.h>
 
 #define ROBOT_NUM 16   // The id number
 
@@ -34,9 +35,12 @@ int main ()
         rlink.print_errs("  ");
         return -1;
     }
+    
+    rlink.command(WRITE_PORT_0, 0xf0);
 
-    ColorValue whiteMean(127, 127, 127), yellowMean(127, 127, 0), multiMean(63, 63, 63);
+    ColorValue whiteMean(33, 33, 83), yellowMean(25, 22, 99), multiMean(16, 13, 35);
     ColorValue res = readColor();
+    printf("R G B %d %d %d\n", res.R, res.G, res.B);
     int whiteErr = colorError(res, whiteMean);
     int yellowErr = colorError(res, yellowMean);
     int multiErr = colorError(res, multiMean);
@@ -55,6 +59,16 @@ int main ()
         // Multi
         printf("Multi\n");
     }
+    
+    rlink.command(WRITE_PORT_1, 6);
+    
+    for (int i = 0 ; i < 10 ; ++i)
+    {
+		rlink.command(WRITE_PORT_1, 6);
+		delay(500);
+		int v = rlink.request(ADC0);
+		printf("%d\n", v);
+	}
 
     return 0;
 }
