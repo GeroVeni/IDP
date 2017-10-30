@@ -38,37 +38,52 @@ int main ()
     
     rlink.command(WRITE_PORT_0, 0xf0);
 
-    ColorValue whiteMean(33, 33, 83);
-    ColorValue yellow1Mean(23, 24, 52);
-    ColorValue yellow2Mean(10, 18, 127);
-    ColorValue multiMean(16, 13, 35);
+    ColorValue whiteMean(33, 33, 83), yellowMean(25, 22, 99), multiMean(16, 13, 35);
     ColorValue res = readColor();
-    printf("R G B %d %d %d\n", res.R, res.G, res.B);
-    int whiteErr = colorError(res, whiteMean);
-    int yellowErr1 = colorError(res, yellow1Mean);
-    int yellowErr2 = colorError(res, yellow2Mean);
-    int multiErr = colorError(res, multiMean);
-    if (whiteErr < yellowErr1 && whiteErr < multiErr && whiteErr < yellowErr2)
+    
+    while (1)
     {
-        // White
-        printf("White\n");
-    }
-    else if (multiErr < yellowErr1 && multiErr < yellowErr2)
-    {
-        // Multi
-        printf("Multi\n");
-    }
-    else if (yellowErr1 < yellowErr2)
-    {
-        // Yellow 1
-        printf("Yellow 1\n");
-    }
-    else
-    {
-		// Yellow 2
-		printf("Yellow 2\n");
+		int a;
+		scanf("%d", &a);
+		int sumv = 0;
+		int reps = 10;
+		
+		rlink.command(WRITE_PORT_1, 6);
+		for (int i = 0 ; i < reps ; ++i)
+		{
+			delay(500);
+			int v = rlink.request(ADC0);
+			//~ printf("%d\n", v);
+			sumv += v;
+		}
+		int blue = sumv / reps;
+		
+		sumv = 0;
+		rlink.command(WRITE_PORT_1, 5);
+		for (int i = 0 ; i < reps ; ++i)
+		{
+			delay(500);
+			int v = rlink.request(ADC0);
+			//~ printf("%d\n", v);
+			sumv += v;
+		}
+		int green = sumv / reps;
+		
+		sumv = 0;
+		rlink.command(WRITE_PORT_1, 3);
+		for (int i = 0 ; i < reps ; ++i)
+		{
+			delay(500);
+			int v = rlink.request(ADC0);
+			//~ printf("%d\n", v);
+			sumv += v;
+		}
+		int red = sumv / reps;
+		
+		printf("* %d , %d, %d\n", red, green, blue);
 	}
-
+	
     return 0;
 }
 
+ 

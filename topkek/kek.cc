@@ -25,7 +25,7 @@ std::vector <SensorValues> sensorHistory;
 int main ()
 {
 	printf("JJJ\n");
-	Initialise();
+	//Initialise();
 	for (int ball = 1; ball <= 6; ball++)
 	{
 		printf("Start\n");
