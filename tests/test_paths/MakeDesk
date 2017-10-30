@@ -1,0 +1,10 @@
+#Automatically generated file
+test_paths: test_paths.o core.o utility.o
+	g++ -L/export/teach/1BRobot -o test_paths  test_paths.o core.o utility.o -lrobot
+
+ test_paths.o: test_paths.cc ../../topkek/core.h ../../topkek/utility.h ../../topkek/values.h
+	g++ -ansi -Wall -g -I/export/teach/1BRobot -c test_paths.cc
+ core.o: ../../topkek/core.cc ../../topkek/core.h ../../topkek/utility.h ../../topkek/values.h
+	g++ -ansi -Wall -g -I/export/teach/1BRobot -c ../../topkek/core.cc
+ utility.o: ../../topkek/utility.cc ../../topkek/utility.h ../../topkek/values.h
+	g++ -ansi -Wall -g -I/export/teach/1BRobot -c ../../topkek/utility.cc

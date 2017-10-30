@@ -85,6 +85,22 @@ int main (int argc, char ** argv)
             strcpy(partCom, "arm-linux-gnueabi-g++ -ansi -Wall -g -I/usr/arm-unknown-linux-gnueabi/include -I/export/teach/1BRobot");
             continue;
         }
+
+		if (strcmp(argv[i], "-f") == 0)
+		{
+			if (i == argc - 1)
+			{
+				fprintf(stderr, "Name not specified. Using default name (Makefile)\n");
+			}
+			else
+			{
+				fclose(out);
+				out = fopen(argv[i + 1], "w");
+				i++;
+			}
+			continue;
+		}
+		
         if (!iscc(argv[i])) continue;
         in = fopen(argv[i], "r");
         if (!in)
