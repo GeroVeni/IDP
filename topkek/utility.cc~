@@ -246,6 +246,7 @@ void JunctionMode(char direction)
 			rlink.command(MOTOR_4_GO, speed + 128);
 			delay(300); //just passing over the junction (basically will need to test what to do when we get at a final point
 			linetracker = 0; // reinitialised as 1 in the map track
+			current_position = ball; // updates the current position to the position of the ball
 			break;
 		}
 	}

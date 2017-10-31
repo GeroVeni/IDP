@@ -1,11 +1,15 @@
 #include "core.h"
 #include "utility.h"
 #include "values.h"
+
+#include <robot_delay.h>
+
 #include <map>
 #include <stdio.h>
 #include <string>
 
 extern int speed;
+extern robot_link rlink;
 extern std::map<std::pair<int, int>, std::string> pathMap;
 extern int current_position;
 
@@ -14,18 +18,14 @@ void Initialise()
 {
 	PathLoader();
 	
-	static SensorValues prevValues = SensorValues();
-	static int prevSit = 0;
-	std::string path = pathMap[std::make_pair(current_position, dest)];
-	int next_instruction = 0;
-
+	// Set input pins on
+	// TODO
 
 	while (linetracker == 1)
 	{
 		// Read sensor values
 		SensorValues values = readSensors();
 		int sit = 100 * values.left() + 10 * values.mid() + 1 * values.right();
-		printf("Loop\n");
 
 		switch (sit)
 		{
@@ -65,11 +65,9 @@ void LineTracking(int dest)
     // Follows the white line until dest is reached
 {
     static SensorValues prevValues = SensorValues();
-    static int prevSit = 0;
 	std::string path = pathMap[std::make_pair(current_position, dest)];
 	int next_instruction = 0;
     
-
 	while (linetracker == 1)
 	{
         // Read sensor values
@@ -98,12 +96,13 @@ void LineTracking(int dest)
 			FailSafe();
 			break;
 		case 111:         //  1    1    1
-			JunctionMode(path[next_instruction]); // direction = 0 or 128 repending on whether the robot has to turn left or right. Don't know the exact declaration or variables yet because we didn't implement the hardcoding of the path //SUBJECT TO CHANGE
+			JunctionMode(path[next_instruction]);
 			next_instruction ++;
 			break;
 		}
-		linetracker = 1; // Robot exits LineTracking so for next loop iteration we need linetracker = 1
 	}
+	linetracker = 1; // Robot exits LineTracking so for next loop iteration we need linetracker = 1
+	current_position = dest;
 }
 
 void ArmMove(ArmType type)
@@ -124,3 +123,4 @@ int Identify()
 {
 	return 0;
 }
+

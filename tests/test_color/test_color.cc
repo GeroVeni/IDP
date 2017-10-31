@@ -23,7 +23,7 @@ int speed;
 int diff;
 int lastPosition;
 
-const int colorCount = 4;
+const int colorCount = 5;
 ColorValue means[colorCount];
 std::string colorNames[colorCount];
 
@@ -51,6 +51,8 @@ int main ()
 	colorNames[2] = std::string("Yellow 2");
 	means[3] = ColorValue(16, 13, 35);
 	colorNames[3] = std::string("Multi");
+	means[4] = ColorValue(0, 0, 0);
+	colorNames[4] = std::string("Empty");
 
     /*
 	ColorValue whiteMean(33, 33, 83);
