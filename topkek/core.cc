@@ -14,8 +14,48 @@ void Initialise()
 {
 	PathLoader();
 	
-    // Reach starting point
-    // TODO
+	static SensorValues prevValues = SensorValues();
+	static int prevSit = 0;
+	std::string path = pathMap[std::make_pair(current_position, dest)];
+	int next_instruction = 0;
+
+
+	while (linetracker == 1)
+	{
+		// Read sensor values
+		SensorValues values = readSensors();
+		int sit = 100 * values.left() + 10 * values.mid() + 1 * values.right();
+		printf("Loop\n");
+
+		switch (sit)
+		{
+		case 10:          //  0    1    0
+			Forward();
+			break;
+		case 11:          //  0    1    1
+			TurnRight();
+			break;
+		case 110:         //  1    1    0
+			TurnLeft();
+			break;
+		case 1:           //  0    0    1
+			SharpRight();
+			break;
+		case 100:         //  1    0    0
+			SharpLeft();
+			break;
+		case 0:           //  0    0    0
+			FailSafe();
+			break;
+		case 111:         //  1    1    1
+			rlink.command(MOTOR_3_GO, speed);
+			rlink.command(MOTOR_4_GO, speed + 128);
+			delay(500); //go past the junction#
+			linetracker = 0;
+			break;
+		}
+	}
+	linetracker = 1;
 
     // Set position to zero
     current_position = S;
