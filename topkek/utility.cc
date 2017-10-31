@@ -183,33 +183,71 @@ void JunctionMode(char direction)
 	{
 		case 'f':
 		{
-			rlink.command(MOTOR_3_GO, speed + 128);
-			rlink.command(MOTOR_4_GO, speed - 2);
-			delay(1000); // timed 90 degree turn to the left or to the right
+			rlink.command(MOTOR_3_GO, speed );
+			rlink.command(MOTOR_4_GO, speed + 128);
+			delay(500); //go past the junction#
 		}
 		
 		case 'l':
 		{
-			rlink.command(MOTOR_3_GO, speed + 128);
-			rlink.command(MOTOR_4_GO, speed - 2 + 128);
-			delay(1800); // timed 90 degree turn to the left or to the right
+			int ok = 1;
+			rlink.command(MOTOR_3_GO, speed);
+			rlink.command(MOTOR_4_GO, speed + 128);
+			delay(350);
+			rlink.command(MOTOR_3_GO, speed - 128);
+			rlink.command(MOTOR_4_GO, speed - 128);
+			delay(1200);
+			while (ok == 1)
+			{
+				int v = rlink.request(READ_PORT_0);
+				int rightSensor = v & 2;
+				printf("junction : %d\n", rightSensor);
+				rlink.command(MOTOR_3_GO, speed - 128);
+				rlink.command(MOTOR_4_GO, speed - 128);
+				delay(5);
+				if (rightSensor != 0)
+					ok = 0;
+
+			}
 		}
 		
 		case 'r':
 		{
+			int ok = 1;
+			speed += 128;
 			rlink.command(MOTOR_3_GO, speed);
-			rlink.command(MOTOR_4_GO, speed - 2);
-			delay(1800); // timed 90 degree turn to the left or to the right
+			rlink.command(MOTOR_4_GO, speed + 128);
+			delay(350);
+			rlink.command(MOTOR_3_GO, speed - 128);
+			rlink.command(MOTOR_4_GO, speed - 128);
+			delay(1200);
+			while (ok == 1)
+			{
+				int v = rlink.request(READ_PORT_0);
+				int rightSensor = v & 2;
+				printf("junction : %d\n", rightSensor);
+				rlink.command(MOTOR_3_GO, speed - 128);
+				rlink.command(MOTOR_4_GO, speed - 128);
+				delay(5);
+				if (rightSensor != 0)
+					ok = 0;
+
+			}
+			speed -= 128;
+		}
+
+		case 'T':
+		{
+			rlink.command(MOTOR_3_GO, speed);
+			rlink.command(MOTOR_4_GO, speed + 128);
+			delay(300); //just passing over the junction (basically will need to test what to do when we get at a final point
+			linetracker = 0; // reinitialised as 1 in the map track
+			current_position = ball; // updates the current position to the position of the ball
+
 		}
 	}
 	
-	//int junctionok = 1;
-
-	/*
-	check if passed over a line
-	TODO
-	*/
-	linetracker = 0; // reinitialised as 1 in the map track 
+	 
 }
 
 void FailSafe()
