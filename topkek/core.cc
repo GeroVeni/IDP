@@ -28,8 +28,6 @@ void LineTracking(int dest)
     static int prevSit = 0;
 	std::string path = pathMap[std::make_pair(current_position, dest)];
 	int next_instruction = 0;
-    //0 or 1 reading from the light sensors, sit is a 
-	// int s1 = 0, s2 = 0, s3 = 0, sit = s1 * 100 + s2 * 10 + s3;
     
 
 	while (linetracker == 1)
