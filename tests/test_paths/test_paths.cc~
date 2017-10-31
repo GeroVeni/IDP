@@ -33,7 +33,7 @@ int main ()
 	
 	int from = S, dest = P1;
 
-	scanf("%d %d",&from, &dest);
+	// scanf("%d %d",&from, &dest);
 
 	printf("%s\n", pathMap[std::make_pair(from, dest)].c_str());
 
