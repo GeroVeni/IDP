@@ -62,6 +62,7 @@ void LineTracking(int dest)
 			next_instruction ++;
 			break;
 		}
+		linetracker = 1; // Robot exits LineTracking so for next loop iteration we need linetracker = 1
 	}
 }
 
