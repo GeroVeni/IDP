@@ -3,6 +3,7 @@
 #include "values.h"
 
 #include <robot_delay.h>
+#include <iostream>
 
 #include <map>
 #include <stdio.h>
@@ -16,10 +17,28 @@ extern int current_position;
 void Initialise()
     // Initiallises variables and sets up connection
 {
+	printf("Init\n");
+	
 	PathLoader();
 	
+	// Setup the link
+    #ifdef __arm__
+    if (!rlink.initialise("127.0.0.1"))
+    #else
+    if (!rlink.initialise(ROBOT_NUM))
+    #endif
+    {
+        std::cout << "Cannot initialise link" << std::endl;
+        rlink.print_errs("  ");
+        return;
+    }
+	
 	// Set input pins on
-	// TODO
+	rlink.command(WRITE_PORT_0, 0xff);
+	rlink.command(WRITE_PORT_1, 0x0f);
+
+	// Set ramp time to 0
+	rlink.command(RAMP_TIME, 0);
 
 	while (linetracker == 1)
 	{
@@ -48,9 +67,7 @@ void Initialise()
 			FailSafe();
 			break;
 		case 111:         //  1    1    1
-			rlink.command(MOTOR_3_GO, speed);
-			rlink.command(MOTOR_4_GO, speed + 128);
-			delay(500); //go past the junction#
+			printf("speed %d\n", speed);
 			linetracker = 0;
 			break;
 		}
@@ -64,8 +81,10 @@ void Initialise()
 void LineTracking(int dest)
     // Follows the white line until dest is reached
 {
-    static SensorValues prevValues = SensorValues();
+	printf("Starting LineTracking\n");
+    static int prevSit = 2;
 	std::string path = pathMap[std::make_pair(current_position, dest)];
+	printf("path %s\n", path.c_str());
 	int next_instruction = 0;
     
 	while (linetracker == 1)
@@ -73,7 +92,8 @@ void LineTracking(int dest)
         // Read sensor values
         SensorValues values = readSensors();
         int sit = 100 * values.left() + 10 * values.mid() + 1 * values.right();
-        printf("Loop\n");
+        if (sit == prevSit) continue;
+        delay(5);
 
 		switch (sit)
 		{
@@ -111,16 +131,18 @@ void ArmMove(ArmType type)
     if (type == PICK)
     {
         // Pick ball
+        delay(5000);
     }
     else
     {
         // Drop ball
+        delay(5000);
     }
 }
 
 int Identify()
     // Identifies the type of the ball picked up - returns 0 if none found
 {
-	return 0;
+	return 5;
 }
 

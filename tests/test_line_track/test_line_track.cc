@@ -16,7 +16,7 @@
 class SensorValues;
 
 robot_link rlink;
-int speed = 90 + 128;
+int speed = 80 + 128;
 int diff = 10;
 int sit = 10;
 int lastPosition = 10;
@@ -81,7 +81,6 @@ int main ()
 		
 		bool s1 = leftSensor, s2 = midSensor, s3 = rightSensor;
 		sit = s1 * 100 + s2 * 10 + s3;
-		printf("sit : %d\n", sit);
 		
 		switch (sit)
 		{
@@ -104,8 +103,7 @@ int main ()
 			//FailSafe();
 			break;
 		case 111:         //  1    1    1
-			printf("Junction\n");
-			test_junc();
+			JunctionMode('l');
 			break;
 		}
 	}

@@ -1,37 +1,51 @@
 #include <iostream>
-using namespace std;
+#include <stdio.h>
+#include <map>
+#include <vector>
+#include <string>
 #include <robot_instr.h>
 #include <robot_link.h>
 #include <robot_delay.h>
+
+#include "../../topkek/values.h"
+#include "../../topkek/utility.h"
+#include "../../topkek/core.h"
+
 #define ROBOT_NUM 16   // The id number (see below)
-robot_link rlink;      // datatype for the robot link
+
+// Global variables declaration
+robot_link rlink;
+int current_position;	// The current position of the robot
+int speed = 100;		// Current speed of robot
+int linetracker = 1;	// linetracker turns to 0 to input next map instruction
+char direction = 'f';	// Turn direction
+std::map <std::pair<int, int>, std::string> pathMap;	// The container of the path directions
+int diff = 20;
+int lastPosition = 10;
+
+// Unused
+std::vector <MotorValues> motorHistory;
+std::vector <SensorValues> sensorHistory;
+
+using namespace std;
 
 int main ()
 {                             // data from microprocessor
-cout<<"hello";
-/*
-if (!rlink.initialise ("127.0.0.1")) { // setup the link
-  cout << "Cannot initialise link" << endl;
-  rlink.print_errs("  ");
-  return -1;
-}
-*/
-if (!rlink.initialise (ROBOT_NUM)) { // setup the link
-  cout << "Cannot initialise link" << endl;
-  rlink.print_errs("  ");
-  return -1;
-}
-else
-//cout<<rlink.request (STATUS);
-{
+	if (!rlink.initialise ("127.0.0.1")) { // setup the link
+		cout << "Cannot initialise link" << endl;
+		rlink.print_errs("  ");
+		return -1;
+	}
 	
-for(int i=0;i<=2;i++)
-{
-rlink.command(MOTOR_1_GO, 120); //red - BUSTED
-rlink.command(MOTOR_2_GO, 50); // green
-rlink.command(MOTOR_3_GO, 120); //blue
-rlink.command(MOTOR_4_GO, 119+128); //yellow
-//rlink.command(BOTH_MOTORS_GO_SAME, 60);
+	int a, b;
+	while (1)
+	{
+		printf("Give values: ");
+		scanf("%d %d", &a, &b);
+		LeftMotor(a);
+		RightMotor(b);
+	}
+
+	return 0;
 }
-}
-}
+
