@@ -12,6 +12,7 @@ stopwatch wt;
 // 2 - microproc
 int main ()
 {
+	printf("Hello World!\n");
 	int val;                              // data from microprocessor
 	
 	if (!rlink.initialise ("127.0.0.1")) // setup the link
@@ -20,27 +21,17 @@ int main ()
 		rlink.print_errs("  ");
 		return -1;
 	}
-	//~ val = rlink.request (TEST_INSTRUCTION); // send test instruction
-	//~ if (val == TEST_INSTRUCTION_RESULT)   // check result
-	//~ {
-		//~ cout << "Test passed" << endl;
-		//~ return 0;                            // all OK, finish
-	//~ }
-	//~ else if (val == REQUEST_ERROR)
-	//~ {
-		//~ cout << "Fatal errors on link:" << endl;
-		//~ rlink.print_errs();
-	//~ }
-	//~ else
-		//~ cout << "Test failed (bad value returned)" << endl;
-	
-	//~ return -1;                          // error, finish
 	
 	wt.start();
 	val = rlink.request(TEST_INSTRUCTION);
 	if ( val == TEST_INSTRUCTION_RESULT ) printf("Passed\n");
 	else printf("Failed\n");
 	printf("Time : %d\n", wt.read());
+
+	rlink.command(WRITE_PORT_0, 0x0f);
+	int x = rlink.request(READ_PORT_0);
+	cout<<x<<std::endl;
+	
 	
 	wt.start();
 	int COUNT = 100;

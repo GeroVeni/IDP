@@ -20,7 +20,7 @@ void Initialise()
 	printf("Init\n");
 	
 	PathLoader();
-	
+	printf("PathloaderOK\n");
 	// Setup the link
     #ifdef __arm__
     if (!rlink.initialise("127.0.0.1"))
@@ -32,10 +32,11 @@ void Initialise()
         rlink.print_errs("  ");
         return;
     }
+	printf("ConnectionOK\n");
 	
 	// Set input pins on
-	rlink.command(WRITE_PORT_0, 0xff);
-	rlink.command(WRITE_PORT_1, 0x0f);
+	rlink.command(WRITE_PORT_0, 0x0f);
+	rlink.command(WRITE_PORT_1, 0x08);
 
 	// Set ramp time to 0
 	rlink.command(RAMP_TIME, 0);
@@ -45,7 +46,7 @@ void Initialise()
 		// Read sensor values
 		SensorValues values = readSensors();
 		int sit = 100 * values.left() + 10 * values.mid() + 1 * values.right();
-
+		printf("Sit: %d \n", sit);
 		switch (sit)
 		{
 		case 10:          //  0    1    0

@@ -36,7 +36,8 @@ int main ()
         return -1;
     }
     
-    rlink.command(WRITE_PORT_0, 0xf0);
+    rlink.command(WRITE_PORT_0, 0x0f);
+	rlink.command(WRITE_PORT_1, 0x08);
 
     while (1)
     {

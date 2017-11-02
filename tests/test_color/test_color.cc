@@ -41,7 +41,8 @@ int main ()
         return -1;
     }
     
-    rlink.command(WRITE_PORT_0, 0xf0);
+    rlink.command(WRITE_PORT_0, 0x0f);
+	rlink.command(WRITE_PORT_1, 0x08);
 
 	means[0] = ColorValue(33, 33, 83);
 	colorNames[0] = std::string("White");

@@ -1,0 +1,6 @@
+#Automatically generated file
+test_instr: test_instr.o
+	g++ -L/export/teach/1BRobot -o test_instr  test_instr.o -lrobot
+
+ test_instr.o: test_instr.cc
+	g++ -ansi -Wall -g -I/export/teach/1BRobot -c test_instr.cc
