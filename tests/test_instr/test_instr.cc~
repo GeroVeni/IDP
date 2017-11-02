@@ -40,7 +40,7 @@ int main ()
 	val = rlink.request(TEST_INSTRUCTION);
 	if ( val == TEST_INSTRUCTION_RESULT ) printf("Passed\n");
 	else printf("Failed\n");
-	printf("Time : %d\n", wt.read());
+	print("Time : %d\n", wt.read());
 	
 	wt.start();
 	int COUNT = 100;
