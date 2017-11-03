@@ -120,9 +120,6 @@ ColorValue readColor()
 	delay(pause);
 	res.R = rlink.request(ADC0);
 
-	//  Light LEDs to show color
-	//  TODO
-	
 	return res;
 }
 

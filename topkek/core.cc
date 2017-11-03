@@ -35,8 +35,8 @@ void Initialise()
 	printf("ConnectionOK\n");
 	
 	// Set input pins on
-	//rlink.command(WRITE_PORT_0, 0x0f);
-	rlink.command(WRITE_PORT_1, 0x08);
+	rlink.command(WRITE_PORT_0, 0x0f);
+	rlink.command(WRITE_PORT_1, 0x28);
 
 	// Set ramp time to 0
 	rlink.command(RAMP_TIME, 0);
@@ -131,13 +131,30 @@ void ArmMove(ArmType type)
 {
     if (type == PICK)
     {
-        // Pick ball
-        delay(5000);
+		int curr = rlink.request(READ_PORT_1);
+		curr = curr | 0x10;
+		rlink.command(WRITE_PORT_1, curr);
+		delay(1000);
+		curr = curr & (~0x20);
+		rlink.command(WRITE_PORT_1, curr);
+		delay(1000);
+		curr = curr & (~0x10);
+		rlink.command(WRITE_PORT_1, curr);
+		delay(1000);
     }
     else
     {
         // Drop ball
-        delay(5000);
+		int curr = rlink.request(READ_PORT_1);
+		curr = curr | 0x10;
+		rlink.command(WRITE_PORT_1, curr);
+		delay(1000);
+		curr = curr | 0x20;
+		rlink.command(WRITE_PORT_1, curr);
+		delay(1000);
+		curr = curr & (~0x10);
+		rlink.command(WRITE_PORT_1, curr);
+		delay(1000);
     }
 }
 

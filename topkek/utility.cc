@@ -101,6 +101,7 @@ int readWeight()
 
 ColorValue readColor()
 {
+	return 5;
 	static int pause = 1000;
 	ColorValue res;
 
