@@ -126,28 +126,18 @@ ColorValue readColor()
 	return res;
 }
 
-inline void RightMotor(int val)
-{
-	rlink.command(MOTOR_4_GO, val);
-}
-
-inline void LeftMotor(int val)
-{
-	rlink.command(MOTOR_3_GO, val ^ 128);
-}
-
 void Forward()
     // Sets the motor speed to move forward
 {
-    rlink.command(MOTOR_3_GO, speed);
-    rlink.command(MOTOR_4_GO, speed +128);
+    rlink.command(MOTOR_3_GO, speed + 4);
+    rlink.command(MOTOR_4_GO, speed + 128);
     delay(10);
 }
 
 void TurnLeft()
     // Sets the motor speeds to turn left
 {
-    rlink.command(MOTOR_3_GO, speed );
+    rlink.command(MOTOR_3_GO, speed + 4);
     rlink.command(MOTOR_4_GO, speed + diff + 20 + 128);
     delay(10);
 }
@@ -156,7 +146,7 @@ void TurnLeft()
 void TurnRight()
     // Sets the motor speeds to turn right
 {
-    rlink.command(MOTOR_3_GO, speed + diff + 20);
+    rlink.command(MOTOR_3_GO, speed + 4 + diff + 20);
     rlink.command(MOTOR_4_GO, speed + 128);
     delay(10);
 }
@@ -165,8 +155,6 @@ void TurnRight()
 void SharpLeft()
     // Sets the motor speeds to sharply turn left
 {
-    //~ rlink.command(MOTOR_3_GO, 40);
-    //~ rlink.command(MOTOR_4_GO, speed  + 2*diff + 128);
     rlink.command(MOTOR_3_GO, 0);
     rlink.command(MOTOR_4_GO, speed + 128);
     delay(10);
@@ -175,9 +163,7 @@ void SharpLeft()
 void SharpRight()
     // Sets the motor speeds to sharply turn right
 {
-    //~ rlink.command(MOTOR_3_GO, speed + 2*diff);
-    //~ rlink.command(MOTOR_4_GO, 40+128);
-    rlink.command(MOTOR_3_GO, speed );
+    rlink.command(MOTOR_3_GO, speed);
     rlink.command(MOTOR_4_GO, 0);
     delay(10);
 }
@@ -202,44 +188,42 @@ void JunctionMode(char direction)
 		case 'l':
 		{
 			printf("Junction l\n");
-			int ok = 1;
 			rlink.command(MOTOR_3_GO, speed);
 			rlink.command(MOTOR_4_GO, speed + 128);
 			delay(350);
 			rlink.command(MOTOR_3_GO, speed - 128);
 			rlink.command(MOTOR_4_GO, speed - 128);
-			delay(1500);
+			delay(1200);
 			rlink.command(MOTOR_3_GO, speed - 128);
 			rlink.command(MOTOR_4_GO, speed - 128);
-			while (ok == 1)
+			printf("Re-adjusting...\n");
+			while (1)
 			{
 				int v = rlink.request(READ_PORT_0);
 				int rightSensor = v & 2;
-				printf("junction : %d\n", rightSensor);
 				//~ rlink.command(MOTOR_3_GO, speed - 128);
 				//~ rlink.command(MOTOR_4_GO, speed - 128);
 				delay(5);
-				if (rightSensor != 0)
-					ok = 0;
-
+				if (rightSensor != 0) break;
 			}
+			printf("Successful re-adjustment\n");
 			break;
 		}
 		
 		case 'r':
 		{
 			printf("Junction r\n");
-			int ok = 1;
 			speed += 128;
 			rlink.command(MOTOR_3_GO, speed);
 			rlink.command(MOTOR_4_GO, speed + 128);
 			delay(350);
 			rlink.command(MOTOR_3_GO, speed - 128);
 			rlink.command(MOTOR_4_GO, speed - 128);
-			delay(1500);
+			delay(1200);
 			rlink.command(MOTOR_3_GO, speed - 128);
 			rlink.command(MOTOR_4_GO, speed - 128);
-			while (ok == 1)
+			printf("Re-adjusting...\n");
+			while (1)
 			{
 				int v = rlink.request(READ_PORT_0);
 				int rightSensor = v & 2;
@@ -247,10 +231,9 @@ void JunctionMode(char direction)
 				//~ rlink.command(MOTOR_3_GO, speed - 128);
 				//~ rlink.command(MOTOR_4_GO, speed - 128);
 				delay(5);
-				if (rightSensor != 0)
-					ok = 0;
-
+				if (rightSensor != 0) break;
 			}
+			printf("Successful re-adjustment\n");
 			speed -= 128;
 			break;
 		}

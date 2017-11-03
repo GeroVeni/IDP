@@ -35,7 +35,7 @@ void Initialise()
 	printf("ConnectionOK\n");
 	
 	// Set input pins on
-	rlink.command(WRITE_PORT_0, 0x0f);
+	//rlink.command(WRITE_PORT_0, 0x0f);
 	rlink.command(WRITE_PORT_1, 0x08);
 
 	// Set ramp time to 0
@@ -142,8 +142,73 @@ void ArmMove(ArmType type)
 }
 
 int Identify()
-    // Identifies the type of the ball picked up - returns 0 if none found
+	// Identifies the type of the ball picked up - returns 0 if none found
 {
+	const int colorCount = 5;
+	ColorValue means[colorCount];
+	std::string colorNames[colorCount];
+	int colorId[colorCount];
+	// White - 0
+	// Yellow - 1
+	// Multi - 2
+	// Empty - -1
+	means[0] = ColorValue(33, 33, 83);
+	colorNames[0] = std::string("White");
+	colorId[0] = 0;
+	means[1] = ColorValue(23, 24, 52);
+	colorNames[1] = std::string("Yellow 1");
+	colorId[1] = 1;
+	means[2] = ColorValue(10, 18, 127);
+	colorNames[2] = std::string("Yellow 2");
+	colorId[2] = 1;
+	means[3] = ColorValue(16, 13, 35);
+	colorNames[3] = std::string("Multi");
+	colorId[3] = 2;
+	means[4] = ColorValue(0, 0, 0);
+	colorNames[4] = std::string("Empty");
+	colorId[4] = 3;
+
+	ColorValue res = readColor();
+
+	int minErr = 3 * 255 * 255;
+	int minPos = 0;
+	for (int i = 0; i < colorCount; i++)
+	{
+		int err = colorError(res, means[i]);
+		if (err < minErr)
+		{
+			minErr = err;
+			minPos = i;
+		}
+	}
+
+	printf("%s\n", colorNames[minPos].c_str());
+	
+	int out = 0;
+
+	// DROP BALL IN WEIGHTING MECH
+	// TODO
+
+	int weight = rlink.request(READ_PORT_0);
+	weight = weight & 0x08;
+	if (weight) out = 0x80;
+	switch (colorId[minPos])
+	{
+		case 0:
+			// White
+			out = out | 0x10;
+			break;
+		case 1:
+			// Yellow
+			out = out | 0x20;
+			break;
+		case 2:
+			// Multi
+			out = out | 0x40;
+			break;
+	}
+	
+	rlink.command(WRITE_PORT_0, ~out);
 	return 5;
 }
 
